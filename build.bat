@@ -20,7 +20,7 @@ jar cvf atmgitops.war *
 copy atmgitops.war "C:\Program Files\Apache Software Foundation\Tomcat 9.0\webapps"
 "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" http://www.czldl.net/atmgitops/index.html
 java -jar atmgitops.jar
-pause
+rem pause
 cd ..
 rd /S/Q target
 echo ok
