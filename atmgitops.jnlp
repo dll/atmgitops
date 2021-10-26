@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?> 
-<jnlp codebase="https://czldl.github.io/atmgitops/" href="atmgitops.jnlp"> 
+<jnlp codebase="http://osgisone.gitee.io/atmgitops/" href="atmgitops.jnlp"> 
 	<information> 
 		<title>JWS to Run ATMGitOps</title> 
 		<vendor>czldl</vendor> 
 		<description>ATM GitOps</description> 
-		<homepage href="https://czldl.github.io/atmgitops/index.html"/> 
+		<homepage href="http://osgisone.gitee.io/atmgitops/index.html"/> 
 		<offline-allowed/> 
 	</information> 
 	<security> 
