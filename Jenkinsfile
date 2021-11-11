@@ -23,8 +23,7 @@ pipeline{
         }
         stage('Jar Signer') {
             steps {
-                bat '''
-                keytool -genkey -alias mykey -keystore mykeystore.store -storetype PKCS12 -storepass mystorepass -storepass mystorepass -dname "CN=liudongliang, OU=chzu, L=xxxy, S=chuzhou, O=anhui, C=CH"
+                bat '''keytool -genkey -alias mykey -keystore mykeystore.store -storetype PKCS12 -keyalg RSA -storepass mystorepass  -validity 365 -keysize 2048 -storepass mystorepass -dname "CN=liudongliang, OU=chzu, L=xxxy, S=chuzhou, O=anhui, C=CH"
                 keytool -export -keystore mykeystore.store -alias mykey -validity 365 -file mykeystore.cert -storepass mystorepass
                 jarsigner -keystore myKeystore.store atmgitops.jar mykey -storepass mystorepass
                 echo keystore "file:myKeystore.store","PKCS12"; grant signedBy "mykey" { permission java.io.FilePermission"<<ALL FILES>>","read";};>myKeystore.policy
