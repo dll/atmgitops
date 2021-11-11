@@ -13,6 +13,7 @@ pipeline{
                 javac atm/*.java atm/physical/*.java atm/transaction/*.java banking/*.java simulation/*.java -d ../target/
                 cd ..
                 cd target
+                cd ..
                 jar cfe ../atmgitops.jar atm.ATMMain atm/*.class atm/physical/*.class atm/transaction/*.class banking/*.class simulation/*.class
                 keytool -genkey -alias mykey -keystore mykeystore.store -storetype PKCS12 -keyalg RSA -storepass mystorepass  -validity 365 -keysize 2048 -storepass mystorepass -dname "CN=liudongliang, OU=chzu, L=xxxy, S=chuzhou, O=anhui, C=CH"
                 keytool -export -keystore mykeystore.store -alias mykey -validity 365 -file mykeystore.cert -storepass mystorepass
