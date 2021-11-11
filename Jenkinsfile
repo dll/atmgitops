@@ -6,24 +6,15 @@ pipeline{
         //       git credentialsId: '138gitee', url: 'https://gitee.com/osgisOne/atmgitops.git'
         //    }
         //}
-        stage('Build and Jar') {
+        stage('Build and Signer Jar') {
             steps {
                 bat '''mkdir target
                 cd source
                 javac atm/*.java atm/physical/*.java atm/transaction/*.java banking/*.java simulation/*.java -d ../target/
                 cd ..
                 cd target
-                jar cfe ../atmgitops.jar atm.ATMMain atm/*.class atm/physical/*.class atm/transaction/*.class banking/*.class simulation/*.class'''
-            }
-        }
-        stage('Test oneStage'){
-            steps{
-                echo "Test Stage"
-            }
-        }
-        stage('Jar Signer') {
-            steps {
-                bat '''keytool -genkey -alias mykey -keystore mykeystore.store -storetype PKCS12 -keyalg RSA -storepass mystorepass  -validity 365 -keysize 2048 -storepass mystorepass -dname "CN=liudongliang, OU=chzu, L=xxxy, S=chuzhou, O=anhui, C=CH"
+                jar cfe ../atmgitops.jar atm.ATMMain atm/*.class atm/physical/*.class atm/transaction/*.class banking/*.class simulation/*.class
+                keytool -genkey -alias mykey -keystore mykeystore.store -storetype PKCS12 -keyalg RSA -storepass mystorepass  -validity 365 -keysize 2048 -storepass mystorepass -dname "CN=liudongliang, OU=chzu, L=xxxy, S=chuzhou, O=anhui, C=CH"
                 keytool -export -keystore mykeystore.store -alias mykey -validity 365 -file mykeystore.cert -storepass mystorepass
                 jarsigner -keystore myKeystore.store atmgitops.jar mykey -storepass mystorepass
                 echo keystore "file:myKeystore.store","PKCS12"; grant signedBy "mykey" { permission java.io.FilePermission"<<ALL FILES>>","read";};>myKeystore.policy
