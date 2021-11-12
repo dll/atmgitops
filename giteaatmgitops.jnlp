@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<jnlp codebase="http://localhost:8080/atmgitops/" href="giteaatmgitops.jnlp"> 
+	<information> 
+		<title>JWS to Run ATMGitOps</title> 
+		<vendor>czldl</vendor> 
+		<description>ATM GitOps</description> 
+		<homepage href="http://localhost:8080/atmgitops/index.html"/> 
+		<offline-allowed/> 
+	</information> 
+	<security> 
+		<all-permissions/> 
+	</security> 
+	<update check="always" policy="always"/>
+	<resources> 
+		<j2se href="http://java.sun.com/products/autodl/j2se"  version="1.6+" /> 
+		<jar href="atmgitops.jar" main="true"/> 		 
+	</resources> 
+	<application-desc name="VS Code ATM GitOps" main-class="atm.ATMMain"/> 
+</jnlp> 
